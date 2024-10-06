@@ -33,7 +33,7 @@ O projeto será desenvolvido utilizando as seguintes tecnologias:
 
 Para executar a Plataforma de Gerenciamento de Créditos em ambiente local, siga as instruções abaixo:
 
-1. Clone este repositório: `git clone https://github.com/seu-usuario/nome-do-repositorio.git`
+1. Clone este repositório: `git clone https://github.com/LeonLaboi/portal_mmgd`
 2. Acesse o diretório do projeto: `cd nome-do-repositorio`
 3. Crie e ative um ambiente virtual (opcional, mas recomendado): `python3 -m venv env` e `source env/bin/activate`
 4. Instale as dependências do projeto: `pip install -r requirements.txt`
