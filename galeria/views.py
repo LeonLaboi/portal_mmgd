@@ -10,4 +10,9 @@ def index(request):
         'welcome_message': "CONVIDAMOS COOPERATIVAS \
                            A REPENSAREM SEUS MODOS DE GERAÇÃO E CONSUMO DE ENERGIA!"
     }
-    return render(request, 'index.html', context)#return render(request, 'index.html') #
+    return render(request, 'galeria/index.html', context)#return render(request, 'index.html') #
+
+
+def alura(request):
+    return render(request, 'galeria/alura.html')
+
