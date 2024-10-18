@@ -16,3 +16,6 @@ def index(request):
 def alura(request):
     return render(request, 'galeria/alura.html')
 
+def imagem(request):
+    return render(request, 'galeria/imagem.html')
+
