@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404
 # from django.http import HttpResponse
 from django.templatetags.static import static
+
+from galeria.models import Perfil
 
 def index(request):
   
@@ -14,8 +16,10 @@ def index(request):
 
 
 def alura(request):
-    return render(request, 'galeria/alura.html')
+    perfis = Perfil.objects.all()
+    return render(request, 'galeria/alura.html', {'cards': perfis})
 
-def imagem(request):
-    return render(request, 'galeria/imagem.html')
+def imagem(request, perfil_id):
+    perfil = get_list_or_404(Perfil, pk=perfil_id) #Perfil.objects.get(id=foto_id)
+    return render(request, 'galeria/imagem.html', {'perfil': perfil})
 
