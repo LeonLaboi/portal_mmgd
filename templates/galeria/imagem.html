@@ -11,10 +11,10 @@
                 </nav>
             </section>
             <section class="grafico">
-                <h2>Gráfico de Consumo de Energia</h2>
-                <label for="client-selector">
+                <h2 class="cards__titulo">Gráfico de Consumo de Energia</h2>
+                <label for="client-selector" class="card">
                     Selecione {{ selected_filter|capfirst }}:
-                </label>
+                </label>                
                 <select id="client-selector">
                     {% for client in clientes %}
                         {% if selected_filter == 'id_client' %}

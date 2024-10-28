@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 
 class Perfil(models.Model):
@@ -5,6 +6,7 @@ class Perfil(models.Model):
     legenda = models.CharField(max_length=75, null=False, blank=False)  # Corrigido max_length
     descricao = models.TextField(null=False, blank=False)
     foto = models.CharField(max_length=50, null=False, blank=False)
+    data_criacao = models.DateTimeField(default=datetime.now(), blank=False)
 
     def __str__(self):
         return f'Perfil [nome={self.nome}]'
@@ -12,12 +14,16 @@ class Perfil(models.Model):
 class Consumidor(models.Model):
     first_name = models.CharField(max_length=30)
     id_uc = models.IntegerField(null=False, blank=False, primary_key=True)
+    id_client = models.IntegerField(null=False, blank=False, default=None)
     endereco = models.CharField(max_length=30)
+    tipo = models.CharField(max_length=5, default=None)
 
 class Gerador(models.Model):
     first_name = models.CharField(max_length=30)
     id_uc = models.IntegerField(null=False, blank=False, primary_key=True)
+    id_client = models.IntegerField(null=False, blank=False, default=None)
     endereco = models.CharField(max_length=30)
+    tipo = models.CharField(max_length=5, default=None)
 
 
 class LeituraCSV(models.Model):

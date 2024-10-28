@@ -4,9 +4,11 @@ import numpy as np
 import io
 import base64
 
-from django.shortcuts import render, get_object_or_404 #get_list_or_404
+from django.shortcuts import render, get_object_or_404, redirect #get_list_or_404
 from django.http import JsonResponse #HttpResponse
 from django.templatetags.static import static
+from django.contrib.auth import authenticate, login as auth_login
+from django.contrib import messages
 
 from galeria.models import Perfil, LeituraCSV
 
@@ -89,24 +91,15 @@ def get_graph(request, client_id):
     graphic = base64.b64encode(buf.read()).decode('utf-8')
     return JsonResponse({'graphic': graphic})
 
-# def imagem(request, perfil_id):
-#     perfil = get_list_or_404(Perfil, pk=perfil_id) #Perfil.objects.get(id=foto_id)
-#     return render(request, 'galeria/imagem.html', {'perfil': perfil})
 
-# def imagem_view(request):
-#     id_cliente = request.GET.get('id_cliente', None)
-#     if id_cliente:
-#         dados = LeituraCSV.objects.filter(id_cliente=id_cliente).values('mes_ref', 'qtd_enrg_te')
-#     else:
-#         dados = LeituraCSV.objects.all().values('mes_ref', 'qtd_enrg_te', 'id_cliente')
-
-#     # Converte os dados para JSON
-#     dados_json = json.dumps(list(dados))
-
-#     # Busca todos os IDs únicos de cliente para o campo de seleção
-#     ids_clientes = LeituraCSV.objects.values_list('id_cliente', flat=True).distinct()
-
-#     return render(request, 'galeria/imagem.html', {
-#         'dados': dados_json,
-#         'ids_clientes': ids_clientes,
-#     })
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            auth_login(request, user)
+            return redirect('alura')  # Redireciona para a página 'alura' em caso de sucesso
+        else:
+            messages.error(request, 'Credenciais inválidas')
+    return render(request, 'galeria/login.html')
