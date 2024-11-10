@@ -23,7 +23,6 @@ def index(request):
     }
     return render(request, 'galeria/index.html', context)#return render(request, 'index.html') #
 
-
 def alura(request):
     perfis = Perfil.objects.all()
     return render(request, 'galeria/alura.html', {'cards': perfis})
@@ -99,7 +98,11 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)
-            return redirect('alura')  # Redireciona para a página 'alura' em caso de sucesso
+            return redirect('home')  # Redireciona para a página 'alura' em caso de sucesso
         else:
             messages.error(request, 'Credenciais inválidas')
     return render(request, 'galeria/login.html')
+
+def home(request):
+    perfis = Perfil.objects.all()
+    return render(request, 'galeria/home.html', {'page_title': 'Projeto MMGD', 'cards': perfis, 'show_home_button': False})

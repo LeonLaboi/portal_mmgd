@@ -11,16 +11,35 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
-    height: 100px;
+    height: 80px;
     width: 100vw;
     padding: 10px 20px;
+}
+
+.head-child {
+    align-self: center;
+    text-align: center;
 }
 
 #tittle {
     font-size: 3em;
     font-weight: 800;
     text-transform: uppercase;
+}
+
+.head-child a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    border: 1px solid white;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.head-child a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 @keyframes fadeIn {
@@ -30,10 +49,6 @@ body {
     to {
         opacity: 1;
     }
-}
-
-.content {
-    margin-top: 8vh;
 }
 
 #front-message {
@@ -56,22 +71,5 @@ body {
 #front-message span {
     color: #29c724;
     font-weight: 700;
-    text-decoration: underline;
-}
-
-.link-button {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.link-button a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2em;
-    border: 1px solid white;
-    padding: 10px 15px;
-    border-radius: 5px;
-}
-.link-button a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    /* text-decoration: underline; */
 }
