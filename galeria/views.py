@@ -44,7 +44,7 @@ def imagem(request, perfil_id):
     mes_refs = [leitura.mes_ref.strftime("%m/%Y") for leitura in leituras]
     qtd_enrg_te = [leitura.qtd_enrg_te for leitura in leituras]
 
-    plt.figure(figsize=(10, 5))
+    plt.figure(figsize=(15, 8))
     plt.bar(mes_refs, qtd_enrg_te, color='skyblue')
     plt.title(f'Quantidade de Energia por Mês para {selected_filter}={selected_id}')
     plt.xlabel('Mês Referência')
@@ -57,7 +57,9 @@ def imagem(request, perfil_id):
     graphic = base64.b64encode(buffer.getvalue()).decode()
     buffer.close()
 
-    return render(request, 'galeria/imagem.html', {
+    return render(request, 'galeria/graph.html', {
+        'page_title': 'Projeto MMGD',
+        'show_home_button': True,
         'perfil': perfil,
         'graphic': graphic,
         'clientes': clientes,
