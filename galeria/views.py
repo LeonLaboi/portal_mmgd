@@ -23,7 +23,6 @@ def index(request):
     }
     return render(request, 'galeria/index.html', context)#return render(request, 'index.html') #
 
-
 def alura(request):
     perfis = Perfil.objects.all()
     return render(request, 'galeria/alura.html', {'cards': perfis})
@@ -45,7 +44,7 @@ def imagem(request, perfil_id):
     mes_refs = [leitura.mes_ref.strftime("%m/%Y") for leitura in leituras]
     qtd_enrg_te = [leitura.qtd_enrg_te for leitura in leituras]
 
-    plt.figure(figsize=(10, 5))
+    plt.figure(figsize=(15, 8))
     plt.bar(mes_refs, qtd_enrg_te, color='skyblue')
     plt.title(f'Quantidade de Energia por Mês para {selected_filter}={selected_id}')
     plt.xlabel('Mês Referência')
@@ -58,7 +57,9 @@ def imagem(request, perfil_id):
     graphic = base64.b64encode(buffer.getvalue()).decode()
     buffer.close()
 
-    return render(request, 'galeria/imagem.html', {
+    return render(request, 'galeria/graph.html', {
+        'page_title': 'Projeto MMGD',
+        'show_home_button': True,
         'perfil': perfil,
         'graphic': graphic,
         'clientes': clientes,
@@ -99,7 +100,11 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)
-            return redirect('alura')  # Redireciona para a página 'alura' em caso de sucesso
+            return redirect('home')  # Redireciona para a página 'alura' em caso de sucesso
         else:
             messages.error(request, 'Credenciais inválidas')
     return render(request, 'galeria/login.html')
+
+def home(request):
+    perfis = Perfil.objects.all()
+    return render(request, 'galeria/home.html', {'page_title': 'Projeto MMGD', 'cards': perfis, 'show_home_button': False})

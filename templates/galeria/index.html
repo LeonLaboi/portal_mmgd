@@ -3,77 +3,18 @@
 <html>
 <head>
     <title>Gestão de Energia de Sistemas Fotovoltaicos</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-image: url('{{ image_path }}');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 100vh;
-            display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
-            font-family: 'Museo Sans', Arial, sans-serif;
-            color: white;
-        }
-        .content {
-            padding: 20px;
-        }
-        .content h1 {
-            font-size: 26px;
-            font-weight: bold;
-            margin-top: 20px;
-            margin-bottom: 0px;
-            margin-left: 120px;
-        }
-        .content .subtitle {
-            font-size: 14px;
-            font-weight: normal;
-            margin-top: 2px;
-            margin-left: 120px;
-        }
-        .content p {
-            font-weight: normal;
-            margin-top: 400px;
-        }
-        .link-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-        .link-button a {
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            border: 1px solid white;
-            padding: 10px 15px;
-            border-radius: 5px;
-        }
-        .link-button a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-    </style>
-    <!-- Include the Museo Sans font -->
-    <link href="https://fonts.googleapis.com/css2?family=Museo+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}">
 </head>
 
-<style>
-    .link-button {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-    }
-</style>
-
 <body>
-    <div class="content">
-        <div class="link-button">
-            <a href="{% url 'login' %}">Ir para LOGIN</a> <!-- <a href="{% url 'alura' %}">Ir para LOGIN</a> -->
+    <div class="page-header">
+        <h1 id="tittle" class="head-child">Univesp</h1>
+        <div class="head-child">
+            <a href="{% url 'login' %}">Ir para LOGIN</a>
         </div>
-        <h1>Univesp:</h1>
-        <p class="subtitle">Ciência de Dados</p>
-        <p>{{ welcome_message|safe }}</p>
+    </div>
+    <div class="content">
+        <p id="front-message">Convidamos cooperativas a repensarem seus modos de geração de <span>energia</span>!</p>
     </div>
 </body>
